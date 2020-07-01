@@ -1,24 +1,29 @@
-# Lumen PHP Framework
+# Test task on framework Lumen
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Тестовое задание
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Реализуйте небольшой API на фреймворке lumen.
 
-## Official Documentation
+В API должно быть два метода, которые позволяют подтвердить владение email-ящиком:
+- sendCode(email) - генерация и отправка секретного кода на указанный email;
+- checkCode(email, code) - сверка указанного кода с тем, что был ранее отправлен на указанный email.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Общие требования к секретному коду:
+1) Код - это строка из 4-ех символов, каждый из которых является цифрой;
+2) Время жизни кода: 5 минут;
+3) Код не может отправляться на один и тот-же email более 5 раз в течение 1 часа;
+4) Код не может отправляться на один и тот-же email более 1 раза в 5 минут;
+5) После успешной генерации нового кода (вызов sendCode), предыдущий, если он был, инвалидируется;
+6) После трех неуспешных попыток проверить код (вызов checkCode) код инвалидируется;
+7) После успешной проверки кода он инвалидируется;
+8) После успешной проверки кода все счетчики ограничений по отправке кода для данного email обнуляются.
 
-## Contributing
+## {site}/api/documentation/ - link for swagger
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+php yii migrate - Install migration
+php artisan db:seed - Add data for tables
+php artisan swagger-lume:publish - Publish data for lumen-swagger (if need)
+php artisan swagger-lume:generate - Generate swagger doc
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
